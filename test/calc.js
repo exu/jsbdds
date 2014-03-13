@@ -23,7 +23,6 @@ describe('Stat', function () {
     var data = [3, 3, 4, 5, 6, 99, -99, 7, 8, 64];
 
     describe('#collect()', function () {
-        var out = stat.collect(data);
 
         it('calculates min from given integers', function () {
             stat.collect(data).min.should.equal(-99);
@@ -39,6 +38,10 @@ describe('Stat', function () {
 
         it('calculates count from given integers', function () {
             stat.collect(data).count.should.equal(10);
+        });
+
+        it('calculates sum from given integers', function () {
+            stat.collect(data).sum.should.equal(100);
         });
     });
 });

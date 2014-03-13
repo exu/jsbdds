@@ -9,7 +9,8 @@ module.exports = {
             'min' : Math.min.apply(null, arr),
             'max': Math.max.apply(null, arr),
             'avg': sum / length,
-            'count': length
+            'count': length,
+            'sum': sum
         };
     }
 };
