@@ -23,7 +23,7 @@ var NumNames = {
         19:  'nineteen',
         20:  'twenty',
         30:  'thirty',
-        40:  'fourty',
+        40:  'forty',
         50:  'fifty',
         60:  'sixty',
         70:  'seventy',
@@ -77,6 +77,7 @@ var NumNames = {
         'use strict';
 
         var hundreds = parseInt(number / 100);
+        var tens = number % 100;
         var spelled = '';
 
         if (number === 0) {
@@ -84,10 +85,18 @@ var NumNames = {
         }
 
         if (hundreds > 0) {
-            spelled = this.predefined[hundreds] + ' hundred and ';
+            spelled = this.predefined[hundreds] + ' hundred';
         }
 
-        return spelled + this.spellTens(number % 100);
+        if (hundreds > 0 && tens > 0) {
+            spelled += ' and ';
+        }
+
+        if (tens > 0) {
+            spelled += this.spellTens(tens);
+        }
+
+        return spelled;
     },
 
     spellTens: function (number) {
@@ -137,7 +146,6 @@ var NumNames = {
             divisor = divided[i].divisor;
             num = divided[i].value;
 
-            s = divisor > 1 && num > 1 ? 's' : '';
             div = divisor > 1 ? ' ' + this.divisors[divisor] : '';
 
             if (this.predefined[num]) {
@@ -146,10 +154,10 @@ var NumNames = {
                 sub = this.spellHundrets(num);
             }
 
-            spelled.push(sub + div + s);
+            spelled.push(sub + div);
         }
 
-        return spelled.join(' ');
+        return spelled.join(', ');
     }
 };
 
