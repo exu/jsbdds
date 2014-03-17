@@ -1,4 +1,5 @@
-var nn = require('numnames');
+var nn = require('lib/numnames');
+var should = require('should');
 
 describe('NumNames', function () {
     'use strict';
