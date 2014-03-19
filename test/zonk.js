@@ -57,15 +57,50 @@ describe('Zonk', function () {
 
 
     it('it opens doors', function () {
-
+        zonk.open(1)
+        zonk.opened.should.eql([1]);
+        zonk.open(2)
+        zonk.opened.should.eql([1, 2]);
     });
 
     it('it records gameplay', function () {
+        zonk.answer(0);
+        zonk.answer(1);
 
+        // @todo howto check js objects
+        zonk.record().should.have.keys('choices', 'opened', 'doors', 'won', 'index');
+        zonk.records.should.have.length(1);
     });
 
-    it('it allow to play with doors', function () {
+    it('it plays 1000 times with doors', function () {
+        var door, change, changedDoor;
 
+        for (var i = 0, j = 0; i < 1000; i++) {
+            zonk.reset();
+            door = parseInt(Math.random() * 3);
+            zonk.answer(door);
+
+            // change choosen door?
+            change = Math.random() > 0.5;
+
+            if (change) {
+                zonk.open(zonk.choice);
+
+                // we'll try other doors
+                do {
+                    changedDoor = parseInt(Math.random() * 3);
+                } while(changedDoor == door);
+
+                zonk.answer(changedDoor);
+            }
+            zonk.record();
+        }
+
+        zonk.records.should.have.length(1001);
+
+        var stats = zonk.getStats();
+
+        stats.not_changed.should.be.within(0, 1000);
+        stats.changed.should.be.within(0, 1000);
     });
-
 });
