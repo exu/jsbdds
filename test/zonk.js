@@ -1,4 +1,4 @@
-var zonk = require('lib/zonk');
+var zonk = require('../lib/zonk');
 var should = require('should');
 
 // Monty Hall

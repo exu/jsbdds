@@ -1,4 +1,4 @@
-var bomb = require('lib/bomberman');
+var bomb = require('../lib/bomberman');
 var should = require('should');
 
 /**

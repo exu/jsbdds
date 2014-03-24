@@ -14,7 +14,7 @@
  *  o) number of elements in the sequence = 6
  *  o) average value = 21.833333
  */
-var stat = require('lib/calc');
+var stat = require('../lib/calc');
 var should = require('should');
 
 describe('Stat', function () {

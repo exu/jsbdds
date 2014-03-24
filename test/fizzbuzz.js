@@ -1,4 +1,4 @@
-var fb = require('lib/fizzbuzz');
+var fb = require('../lib/fizzbuzz');
 var should = require('should');
 
 describe('FizzBuzz', function () {
@@ -31,7 +31,7 @@ describe('FizzBuzz', function () {
         fb.get(150000).should.equal('FizzBuzz');
     });
 
-    it('prints FizzBuzz on % 3 and % 5', function () {
+    it('prints FizzBuzzy string', function () {
         var expected = '1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz ' +
             '11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz ' +
             'Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz ' +
